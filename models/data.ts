@@ -38,6 +38,7 @@ class Data {
   }
 
   setAvatarPosition(position: [number, number]) {
+    console.log(position)
     this.avatarPosition = position
   }
 

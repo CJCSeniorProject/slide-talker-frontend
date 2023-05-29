@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { Button } from 'antd'
+import { Button, Radio } from 'antd'
 import { Row, Col } from 'antd'
 import { Typography } from 'antd'
 import UploadFile from '@/components/UploadFile'
@@ -14,7 +14,6 @@ const { Text } = Typography
 
 const GenVideoDiv = styled.div`
   height: 100vh;
-  background: red;
   padding: 24px;
   display: flex;
   justify-content: center;
@@ -34,7 +33,11 @@ const Main = () => {
           <Col span={16}>
             <AdjustPicturePosition />
           </Col>
-          <Col span={8}>
+          <Col span={8} style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}>
             <Row gutter={16}>
               <Col span={12}>
                 <UploadFile uploadType='video'/>
@@ -43,12 +46,24 @@ const Main = () => {
                 <UploadFile uploadType='avatar'/>
               </Col>
             </Row>
+            <Radio.Group
+              onChange={
+                (e) => {
+                  dataStore.setAvatarShape(e.target.value)
+                }
+              }
+              value={ dataStore.avatarShape }
+              optionType="button"
+              style={{ width: '100%', textAlign: 'center' }}
+            >
+              <Radio value="circle">圓形</Radio>
+              <Radio value="square">方形</Radio>
+            </Radio.Group>
             <Button
               type="primary"
               size="large"
-              style={{ margin: '50px 0' }}
+              style={{ width: '100%', textAlign: 'center' }}
               onClick={() => dataStore.post()}>上傳資料</Button>
-            <Text>{dataStore.code}</Text>
           </Col>
         </GenVideoRow>
       </GenVideoDiv>

@@ -20,3 +20,7 @@ a {
     color-scheme: dark;
   }
 }
+
+.ant-radio-button-wrapper {
+  width: 50%;
+}

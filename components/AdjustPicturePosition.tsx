@@ -20,12 +20,16 @@ const AvatarDragArea = styled.div`
 `
 
 const AdjustPicturePosition = () => {
-  const onDrag = (e: DraggableEvent, ui: DraggableData) => {
-    dataStore.setAvatarPosition([ui.x, ui.y])
-  }
-
   const { dataStore } = useStore()
   const [ avatarSize, setAvatarSize ] = useState<number>(256)
+  const [ playerWidth, setPlayerWidth ] = useState<number>(0)
+  const [ playerHeight, setPlayerHeight ] = useState<number>(0)
+
+  const onDrag = (e: DraggableEvent, ui: DraggableData) => {
+    let x = ui.x / playerWidth
+    let y = ui.y / playerHeight
+    dataStore.setAvatarPosition([x, y])
+  }
 
   useEffect(() => {
     let video = document.createElement('video')
@@ -34,10 +38,12 @@ const AdjustPicturePosition = () => {
     video.addEventListener('loadedmetadata', () => {
       if (!video.videoWidth) return
       let col = document.getElementById('col')
-      let colWidth = col?.clientWidth ?? 0
-      let avatarSize = colWidth / video.videoWidth * 256
+      setPlayerWidth(col?.clientWidth ?? 0)
+      setPlayerHeight(col?.clientHeight ?? 0)
+      let avatarSize = playerWidth / video.videoWidth * 256
       setAvatarSize(avatarSize)
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataStore.videoBase64])
 
   return (
