@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react'
+import * as Router from 'next/router'
 import { makeAutoObservable } from 'mobx'
 import { toBase64 } from '@/apis/file'
 
@@ -69,7 +70,7 @@ class Data {
     }).then(async (res) => {
       const data = await res.json()
       console.log(data)
-      this.setCode(data.code)
+      Router.default.push('/' + data.code)
     }).catch((err) => {
       console.log(err)
     })
