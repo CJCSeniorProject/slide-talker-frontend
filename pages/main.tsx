@@ -15,7 +15,7 @@ const Main = () => {
   return (
     <BaseLayout>
       <HeroSection />
-      <div id="slide-avator" style={{ height: '100vh', background: 'red' }}>
+      <div id="gen-video" style={{ height: '100vh', background: 'red' }}>
         <Row gutter={20}>
           <Col span={16}>
             <AdjustPicturePosition />

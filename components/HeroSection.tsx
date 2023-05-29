@@ -26,7 +26,7 @@ const HeroSection = () => {
   `
 
   const scrollToSlideUpload = () => {
-    const slideUpload = document.getElementById('slide-upload')
+    const slideUpload = document.getElementById('gen-video')
     if (slideUpload) {
       slideUpload.scrollIntoView({ behavior: 'smooth' })
     }
