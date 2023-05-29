@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
 import { InboxOutlined } from '@ant-design/icons'
 import { message, Upload } from 'antd'
 import { observer } from 'mobx-react'

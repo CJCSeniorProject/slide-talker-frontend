@@ -33,7 +33,6 @@ function UploadAvatar() {
     accept="image/jpeg, image/png"
     name='file'
     maxCount={1}
-    // action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
     headers={{
       authorization: 'authorization-text'
     }}

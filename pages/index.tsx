@@ -1,16 +1,7 @@
 import Head from 'next/head'
-import { Layout, Menu } from 'antd'
-import { Typography } from 'antd'
-
 import Main from './main'
 
 export default function Home() {
-  // fetchMock.post('http://localhost:8000/api/gen', () => {
-
-  // }, {
-  //   overwriteRoutes: true,
-  // });
-
   return (
     <>
       <Head>

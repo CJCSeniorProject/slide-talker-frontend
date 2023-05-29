@@ -1,16 +1,11 @@
 import React from 'react'
-import { Button } from 'antd'
-import { Input } from 'antd'
-import { message } from 'antd'
+import { Button, Input, message } from 'antd'
 import { dataStore } from '@/models/data'
 
 const InputEmail = () => {
   const sendEmail = () => {
     dataStore.sendEmail()
       .then(async (res) => {
-      // console.log(res);
-      // const data = await res.json();
-      // console.log(JSON.stringify(data));
         message.success('生成完成後會寄到您的信箱')
       })
   }

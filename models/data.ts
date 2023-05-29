@@ -1,6 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react'
-import { observer } from 'mobx-react'
-import { computed, makeAutoObservable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { toBase64 } from '@/apis/file'
 
 class Data {
