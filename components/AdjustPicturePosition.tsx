@@ -9,20 +9,21 @@ import { observer } from 'mobx-react'
 import 'node_modules/video-react/dist/video-react.css'
 import styled from 'styled-components'
 
+const AvatarDragArea = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+`
+
 const AdjustPicturePosition = () => {
   const onDrag = (e: DraggableEvent, ui: DraggableData) => {
     dataStore.setAvatarPosition([ui.x, ui.y])
   }
 
-  const AvatarDragArea = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-  `
   const { dataStore } = useStore()
   const [ avatarSize, setAvatarSize ] = useState<number>(0)
 
