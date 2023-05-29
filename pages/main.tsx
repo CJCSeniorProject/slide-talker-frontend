@@ -1,29 +1,18 @@
 import React, { createContext, useState, useEffect } from 'react'
-import { observer, useLocalObservable } from 'mobx-react-lite'
-import { computed } from 'mobx'
+import { observer } from 'mobx-react-lite'
 import { Layout, Menu } from 'antd'
 import { Button } from 'antd'
 import { Row, Col } from 'antd'
 import { Anchor } from 'antd'
 import { Typography } from 'antd'
-import { Input } from 'antd'
-import type { UploadProps } from 'antd'
-import { message, Upload } from 'antd'
-import { InboxOutlined } from '@ant-design/icons'
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons'
-import { AudioOutlined } from '@ant-design/icons'
-import type { UploadChangeParam, UploadFile } from 'antd/es/upload'
-import type { RcFile } from 'antd/es/upload'
 import DragToUploadVideo from '@/components/DragToUploadVideo'
 import AdjustPicturePosition from '@/components/AdjustPicturePosition'
 import UploadAvatar from '@/components/UploadAvatar'
-import fetchMock, { post } from 'fetch-mock'
+import InputEmail from '@/components/InputEmail'
 import { dataStore } from '@/models/data'
 
 const { Header, Content, Footer } = Layout
-const { Title, Paragraph, Text, Link } = Typography
-
-export const Context = createContext({})
+const { Text } = Typography
 
 function Main() {
   const items = [
@@ -50,15 +39,6 @@ function Main() {
     },
   ]
 
-  function sendEmail() {
-    dataStore.sendEmail()
-      .then(async (res) => {
-      // console.log(res);
-      // const data = await res.json();
-      // console.log(JSON.stringify(data));
-        message.success('生成完成後會寄到您的信箱')
-      })
-  }
 
   return (
     <Layout>
@@ -101,12 +81,7 @@ function Main() {
               style={{ margin: '50px 0' }}
               onClick={() => dataStore.post()}>上傳資料</Button>
             <Text>{dataStore.code}</Text>
-            <Input placeholder="請輸入您的電子郵件" onChange={(e) => dataStore.setEmail(e.target.value)} />
-            <Button
-              type="primary"
-              size="large"
-              style={{ margin: '50px 0' }}
-              onClick={sendEmail}>寄送電子郵件</Button>
+            <InputEmail />
           </Col>
         </Row>
       </Content>

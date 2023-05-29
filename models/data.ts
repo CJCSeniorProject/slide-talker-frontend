@@ -58,7 +58,9 @@ class Data {
     formData.append('x', this.avatarPosition[0].toString())
     formData.append('y', this.avatarPosition[1].toString())
     formData.append('shape', this.avatarShape)
-    console.log(formData)
+    for(var pair of formData.entries()) {
+      console.log(pair[0]+ ', '+ pair[1])
+    }
 
     console.log('start fetch')
     fetch('http://localhost:8000/api/gen', {
