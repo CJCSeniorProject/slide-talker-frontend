@@ -14,7 +14,7 @@ import { dataStore } from '@/models/data'
 const { Header, Content, Footer } = Layout
 const { Text } = Typography
 
-function Main() {
+const Main = () => {
   const items = [
     {
       label: 'Slide Talker',

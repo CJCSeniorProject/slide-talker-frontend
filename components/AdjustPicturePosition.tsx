@@ -1,16 +1,15 @@
 import React from 'react'
 import { Col, Row, Avatar } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
-import Draggable from 'react-draggable'
-import { Player, ControlBar } from 'video-react'
+import Draggable, { DraggableData, DraggableEvent } from 'react-draggable'
+import { Player } from 'video-react'
 import 'video-react/dist/video-react.css'
 import { dataStore } from '@/models/data'
 import { observer } from 'mobx-react'
 import 'node_modules/video-react/dist/video-react.css'
 
-function AdjustPicturePosition() {
-
-  const onDrag = (e: any, ui: any) => {
+const AdjustPicturePosition = () => {
+  const onDrag = (e: DraggableEvent, ui: DraggableData) => {
     dataStore.setAvatarPosition([ui.x, ui.y])
   }
 

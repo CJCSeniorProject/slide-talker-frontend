@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Input, message } from 'antd'
 import { dataStore } from '@/models/data'
+import { observer } from 'mobx-react'
 
 const InputEmail = () => {
   const sendEmail = () => {
@@ -22,4 +23,4 @@ const InputEmail = () => {
   )
 }
 
-export default InputEmail
+export default observer(InputEmail)

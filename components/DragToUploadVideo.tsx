@@ -6,7 +6,7 @@ import { dataStore } from '@/models/data'
 
 const { Dragger } = Upload
 
-function DragToUploadVideo() {
+const DragToUploadVideo = () => {
   const handleUpload = async (option: any) => {
     const file = option.file as File
     try {

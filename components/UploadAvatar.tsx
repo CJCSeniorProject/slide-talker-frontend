@@ -1,11 +1,10 @@
 import React from 'react'
 import { UploadOutlined } from '@ant-design/icons'
-import type { UploadProps } from 'antd'
 import { Button, message, Upload } from 'antd'
 import { dataStore } from '@/models/data'
 import { observer } from 'mobx-react'
 
-function UploadAvatar() {
+const UploadAvatar = () => {
   const handleUpload = async (option: any) => {
     const file = option.file as File
     try {
