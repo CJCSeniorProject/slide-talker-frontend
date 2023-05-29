@@ -32,8 +32,8 @@ const UploadFile = ({uploadType}: {uploadType: 'video'|'avatar'}) => {
       option.onSuccess()
       message.success(`${file.name} file uploaded successfully`)
     }
-    catch (error) {
-      console.log(error)
+    catch (err) {
+      console.log(err)
       option.onError()
       message.error(`${file.name} file upload failed.`)
     }

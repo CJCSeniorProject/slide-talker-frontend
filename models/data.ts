@@ -18,13 +18,10 @@ class Data {
   }
 
   setVideo(video: File) {
-    console.log(video)
     this.video = video
-    console.log(this.video)
     toBase64(video).then((base64) => {
       this.videoBase64 = base64 as string
     })
-    console.log(this.videoBase64)
   }
 
   setAvatar(avatar: File) {
@@ -39,7 +36,6 @@ class Data {
   }
 
   setAvatarPosition(position: [number, number]) {
-    console.log(position)
     this.avatarPosition = position
   }
 
@@ -52,24 +48,18 @@ class Data {
   }
 
   post() {
-    console.log('start fetch')
     const formData = new FormData()
     formData.append('avatar', this.avatar as Blob)
     formData.append('video', this.video as Blob)
     formData.append('x', this.avatarPosition[0].toString())
     formData.append('y', this.avatarPosition[1].toString())
     formData.append('shape', this.avatarShape)
-    for(var pair of formData.entries()) {
-      console.log(pair[0]+ ', '+ pair[1])
-    }
-
-    console.log('start fetch')
+    
     fetch('http://localhost:8000/api/gen', {
       method: 'POST',
       body: formData,
     }).then(async (res) => {
       const data = await res.json()
-      console.log(data)
       Router.default.push('/' + data.code)
     }).catch((err) => {
       console.log(err)
