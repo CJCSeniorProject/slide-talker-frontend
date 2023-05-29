@@ -1,37 +1,33 @@
-import React from 'react';
-import { UploadOutlined } from '@ant-design/icons';
-import type { UploadProps } from 'antd';
-import { Button, message, Upload } from 'antd';
+import React from 'react'
+import { UploadOutlined } from '@ant-design/icons'
+import type { UploadProps } from 'antd'
+import { Button, message, Upload } from 'antd'
+import { dataStore } from '@/models/data'
+import { observer } from 'mobx-react'
 
-function UploadAvatar(props: { uploadFile: (file: File) => void }) {
-
-  const dummyRequest = (props: any) => {
-    setTimeout(() => {
-      props.onSuccess("ok");
-    }, 1000);
-  };
-
+function UploadAvatar() {
   const handleUpload = async (option: any) => {
-    const file = option.file as File;
+    const file = option.file as File
     try {
-      props.uploadFile(file);
-      option.onSuccess();
+      dataStore.setAvatar(file)
+      option.onSuccess()
     }
     catch (error) {
-      option.onError();
+      console.log(error)
+      option.onError()
     }
-  };
+  }
 
   const handleChange = (info: any) => {
     if (info.file.status === 'uploading') {
-      console.log(info.file);
+      console.log(info.file)
     }
     if (info.file.status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully`);
+      message.success(`${info.file.name} file uploaded successfully`)
     } else if (info.file.status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
+      message.error(`${info.file.name} file upload failed.`)
     }
-  };
+  }
 
   return <Upload
     accept="image/jpeg, image/png"
@@ -47,4 +43,4 @@ function UploadAvatar(props: { uploadFile: (file: File) => void }) {
   </Upload>
 }
 
-export default UploadAvatar;
+export default observer(UploadAvatar)
