@@ -25,13 +25,14 @@ const AdjustPicturePosition = () => {
   }
 
   const { dataStore } = useStore()
-  const [ avatarSize, setAvatarSize ] = useState<number>(0)
+  const [ avatarSize, setAvatarSize ] = useState<number>(256)
 
   useEffect(() => {
     let video = document.createElement('video')
     video.src = dataStore.videoBase64 ?? ''
 
     video.addEventListener('loadedmetadata', () => {
+      if (!video.videoWidth) return
       let col = document.getElementById('col')
       let colWidth = col?.clientWidth ?? 0
       let avatarSize = colWidth / video.videoWidth * 256
