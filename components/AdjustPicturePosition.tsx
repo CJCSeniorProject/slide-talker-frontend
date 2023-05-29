@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Col, Row, Avatar } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable'
 import { Player } from 'video-react'
 import 'video-react/dist/video-react.css'
-import { dataStore } from '@/models/data'
+import { useStore } from '@/models/data'
 import { observer } from 'mobx-react'
 import 'node_modules/video-react/dist/video-react.css'
 import styled from 'styled-components'
@@ -23,14 +23,28 @@ const AdjustPicturePosition = () => {
     z-index: 1;
     pointer-events: none;
   `
+  const { dataStore } = useStore()
+  const [ avatarSize, setAvatarSize ] = useState<number>(0)
+
+  useEffect(() => {
+    let video = document.createElement('video')
+    video.src = dataStore.videoBase64 ?? ''
+
+    video.addEventListener('loadedmetadata', () => {
+      let col = document.getElementById('col')
+      let colWidth = col?.clientWidth ?? 0
+      let avatarSize = colWidth / video.videoWidth * 256
+      setAvatarSize(avatarSize)
+    })
+  }, [dataStore.videoBase64])
+
   return (
     <Row>
-      <Col span={24} style={{ position: 'relative'}}>
+      <Col span={24} style={{ position: 'relative'}} id="col">
         <Player
-          autoPlay
           muted
-          src={dataStore.videoBase64 ?? undefined}
           fluid={true}
+          src={dataStore.videoBase64 ?? undefined}
         >
         </Player>
         <AvatarDragArea>
@@ -40,7 +54,7 @@ const AdjustPicturePosition = () => {
             <Avatar
               src={dataStore.avatarBase64 ?? undefined}
               icon={<UserOutlined />}
-              size={256}
+              size={avatarSize}
               shape={dataStore.avatarShape}
               draggable={false}
               style={{ pointerEvents: 'auto', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}

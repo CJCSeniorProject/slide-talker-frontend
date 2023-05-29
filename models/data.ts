@@ -1,3 +1,4 @@
+import { createContext, useContext } from 'react'
 import { makeAutoObservable } from 'mobx'
 import { toBase64 } from '@/apis/file'
 
@@ -85,3 +86,11 @@ class Data {
 }
 
 export const dataStore = new Data()
+
+export const storeContext = createContext({
+  dataStore,
+})
+
+export const useStore = () => {
+  return useContext(storeContext)
+}
