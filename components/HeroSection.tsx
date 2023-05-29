@@ -1,11 +1,44 @@
 import { Button } from 'antd'
+import styled from 'styled-components'
 
 const HeroSection = () => {
+  const HeroSection = styled.div`
+    height: calc(100vh - 64px);
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `
+
+  const Title = styled.h1`
+    margin: 50px 0;
+    font-size: 80px;
+  `
+
+  const Body = styled.div`
+    display: inline-block;
+  `
+
+  const StartButton = styled(Button)`
+    font-size: 32px !important;
+    height: 64px !important;
+  `
+
+  const scrollToSlideUpload = () => {
+    const slideUpload = document.getElementById('slide-upload')
+    if (slideUpload) {
+      slideUpload.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <div style={{ textAlign: 'center', width: '100%', margin: '50px 0 80px' }}>
-      <h1 style={{ margin: '50px 0' }}>只需 3 步就能夠創建演講簡報影片</h1>
-      <Button type="primary" size="large" href="#slide-upload">開始創建</Button>
-    </div>
+    <HeroSection>
+      <Body>
+        <Title>只需 2 步就能夠創建演講簡報影片</Title>
+        <StartButton type="primary" size="large" onClick={scrollToSlideUpload}>開始創建</StartButton>
+      </Body>
+    </HeroSection>
   )
 }
 

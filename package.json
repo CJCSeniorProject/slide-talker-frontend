@@ -21,10 +21,12 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-draggable": "^4.4.5",
+    "styled-components": "^5.3.11",
     "typescript": "5.0.2",
     "video-react": "^0.16.0"
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.26",
     "@types/video-react": "^0.15.1",
     "fetch-mock": "^9.11.0"
   }
