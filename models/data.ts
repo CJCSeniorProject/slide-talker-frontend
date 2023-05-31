@@ -54,7 +54,7 @@ class Data {
     formData.append('x', this.avatarPosition[0].toString())
     formData.append('y', this.avatarPosition[1].toString())
     formData.append('shape', this.avatarShape)
-    
+
     fetch('http://localhost:8000/api/gen', {
       method: 'POST',
       body: formData,
@@ -74,6 +74,10 @@ class Data {
       method: 'POST',
       body: formData,
     })
+  }
+
+  getGenStatus() {
+    return fetch('http://localhost:8000/api/gen/' + this.code)
   }
 }
 
