@@ -4,6 +4,7 @@ import { Typography } from 'antd'
 import InputEmail from '@/components/InputEmail'
 import BaseLayout from '@/layouts/BaseLayout'
 import styled from 'styled-components'
+import { useStore } from '@/models/data'
 
 const { Text, Title } = Typography
 
@@ -28,6 +29,9 @@ const GenLink = styled.div`
 const VideoProgress = () => {
   const router = useRouter()
   const { code } = router.query
+
+  const { dataStore } = useStore()
+  dataStore.setCode(code as string)
 
   return (
     <BaseLayout>
