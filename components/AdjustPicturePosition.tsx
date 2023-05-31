@@ -38,10 +38,12 @@ const AdjustPicturePosition = () => {
     video.addEventListener('loadedmetadata', () => {
       if (!video.videoWidth) return
       let col = document.getElementById('col')
-      setPlayerWidth(col?.clientWidth ?? 0)
-      setPlayerHeight(col?.clientHeight ?? 0)
+      let playerWidth = col?.clientWidth ?? 0
+      let playerHeight = col?.clientHeight ?? 0
       let avatarSize = playerWidth / video.videoWidth * 256
       setAvatarSize(avatarSize)
+      setPlayerWidth(playerWidth)
+      setPlayerHeight(playerHeight)
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataStore.videoBase64])
