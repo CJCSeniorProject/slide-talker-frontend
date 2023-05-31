@@ -37,9 +37,9 @@ const VideoProgress = () => {
     <BaseLayout>
       <Container>
         <GenTitle>您的影片正在生成中！</GenTitle>
-        <GenSubTitle>您可以透過以下連結查看影片生成進度</GenSubTitle>
+        <GenSubTitle>您可以保存本頁的連結，稍後再回來查看影片</GenSubTitle>
         <GenLink>
-          <Text copyable>{`${process.env.NEXT_PUBLIC_API_URL}/${code}`}</Text>
+          <Text copyable>{`${process.env.NEXT_PUBLIC_HOST}/${code}`}</Text>
         </GenLink>
         <InputEmail />
       </Container>
