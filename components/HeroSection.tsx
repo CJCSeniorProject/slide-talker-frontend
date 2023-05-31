@@ -34,7 +34,7 @@ const HeroSection = () => {
   return (
     <HeroSectionDiv>
       <Body>
-        <Title>只需 2 步就能夠創建演講簡報影片</Title>
+        <Title>只需 1 步就能夠創建演講簡報影片</Title>
         <StartButton type="primary" size="large" onClick={scrollToSlideUpload}>開始創建</StartButton>
       </Body>
     </HeroSectionDiv>
