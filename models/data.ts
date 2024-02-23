@@ -12,6 +12,7 @@ class Data {
   avatarPosition: [number, number] = [0, 0]
   code: string | null = null
   email: string | null= null
+  subtitle: boolean = false
 
   constructor() {
     makeAutoObservable(this)
@@ -47,6 +48,10 @@ class Data {
     this.email = email
   }
 
+  setSubtitle(subtitle: boolean) {
+    this.subtitle = subtitle
+  }
+
   post() {
     const formData = new FormData()
     formData.append('avatar', this.avatar as Blob)
@@ -54,6 +59,7 @@ class Data {
     formData.append('x', this.avatarPosition[0].toString())
     formData.append('y', this.avatarPosition[1].toString())
     formData.append('shape', this.avatarShape)
+    formData.append('subtitle', this.subtitle.toString())
 
     fetch('http://localhost:8000/api/gen', {
       method: 'POST',

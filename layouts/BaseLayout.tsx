@@ -1,5 +1,6 @@
 import React from 'react'
 import { Layout, Menu } from 'antd'
+import Link from 'next/link'
 
 const { Header, Content, Footer } = Layout
 
@@ -15,8 +16,9 @@ const BaseLayout = ({ children }: BaseLayoutProps) => {
           mode="horizontal" 
           items={[
             {
-              label: 'Slide Talker',
+              label: <Link href="/">Slide Talker</Link>,
               key: 'slide_talker',
+              // href: '/',
             }
           ]} 
           theme="dark" 

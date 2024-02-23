@@ -5,25 +5,27 @@ import InputEmail from '@/components/InputEmail'
 import BaseLayout from '@/layouts/BaseLayout'
 import styled from 'styled-components'
 import { useStore } from '@/models/data'
+import { Player } from 'video-react'
+import 'node_modules/video-react/dist/video-react.css'
 
 const { Text, Title, Link } = Typography
 
 const Container = styled.div`
-  height: calc(100vh - 131px - 128px);
+  height: calc(100vh - 131px - 96px);
   text-align: center;
   width: 100%;
 `
 
 const GenTitle = styled(Title)`
-  margin: 128px 0;
+  margin: 96px 0;
 `
 
 const GenSubTitle = styled.h2`
-  margin: 64px 0 16px;
+  margin: 32px 0 16px;
 `
 
 const GenLink = styled.div`
-  margin: 16px 0 64px !important;
+  margin: 16px 0 32px !important;
 `
 
 const VideoProgress = () => {
@@ -40,9 +42,16 @@ const VideoProgress = () => {
   const [ inputEmail, setInputEmail ] = useState<JSX.Element>(<></>)
 
   useEffect(() => {
-    dataStore.getGenStatus().then(res => res.text())
+    dataStore.getGenStatus()
       .then(res => {
-        if (res === 'not ready') {
+        if (res.status == 500) {
+          setIsGenReady(false)
+          setGenTitle('您的影片生成失敗！')
+          setGenSubTitle('您可以回上一頁重新生成')
+          setGenLink(<></>)
+          setInputEmail(<></>)
+        }
+        else if (res.status == 499) {
           setIsGenReady(false)
           setGenTitle('您的影片正在生成中！')
           setGenSubTitle('您可以保存本頁的連結，稍後再回來查看影片')
@@ -50,15 +59,21 @@ const VideoProgress = () => {
             <Text copyable>{`${process.env.NEXT_PUBLIC_HOST}/${code}`}</Text>
           )
           setInputEmail(<InputEmail />)
-        } else {
+        }
+        else if (res.status == 200) {
           setIsGenReady(true)
           setGenTitle('您的影片已經生成完成！')
-          setGenSubTitle('您可以點擊下方連結下載影片')
+          setGenSubTitle('您可以點擊下方播放影片')
           setGenLink(
-            <Link href={`${process.env.NEXT_PUBLIC_API_URL}/download/${code}`} target="_blank">
-              {`${process.env.NEXT_PUBLIC_API_URL}/download/${code}`}
-              {/* {res} */}
-            </Link>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+              <div style={{width: '600px'}}>
+                <Player
+                  muted
+                  fluid={true}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}/download/${code}`}
+                ></Player>
+              </div>
+            </div>
           )
           setInputEmail(<></>)
         }

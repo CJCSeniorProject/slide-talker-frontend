@@ -13,6 +13,7 @@ const HeroSectionDiv = styled.div`
 const Title = styled.h1`
   margin: 50px 0;
   font-size: 80px;
+  color: #000;
 `
 
 const Body = styled.div`

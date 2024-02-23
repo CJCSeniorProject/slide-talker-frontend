@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { Button, Radio } from 'antd'
+import { Button, Radio, Checkbox, Switch, Space } from 'antd'
 import { Row, Col } from 'antd'
 import { Typography } from 'antd'
 import UploadFile from '@/components/UploadFile'
@@ -9,8 +9,6 @@ import { dataStore } from '@/models/data'
 import BaseLayout from '@/layouts/BaseLayout'
 import HeroSection from '@/components/HeroSection'
 import styled from 'styled-components'
-
-const { Text } = Typography
 
 const GenVideoDiv = styled.div`
   height: 100vh;
@@ -38,7 +36,8 @@ const Main = () => {
             flexDirection: 'column',
             justifyContent: 'space-between',
           }}>
-            <Row gutter={16}>
+            {/* <Row gutter={16}> */}
+            <Row>
               <Col span={12}>
                 <UploadFile uploadType='video'/>
               </Col>
@@ -55,10 +54,19 @@ const Main = () => {
               value={ dataStore.avatarShape }
               optionType="button"
               style={{ width: '100%', textAlign: 'center' }}
+              size="large"
             >
               <Radio value="circle">圓形</Radio>
               <Radio value="square">方形</Radio>
             </Radio.Group>
+            <Space>
+              <Switch onChange={
+                (checked) => {
+                  dataStore.setSubtitle(checked)
+                }
+              }></Switch>
+              <Typography.Text>AI 自動生成字幕</Typography.Text>
+            </Space>
             <Button
               type="primary"
               size="large"
